@@ -83,10 +83,12 @@ $('#salvar').click(function(e){
 			$('#form_cadastro #spin').remove();
 			if(retorno.acao=='novo'){
 				$('.table').append(retorno.cadastro);
+				$('input[name=date]').val(retorno.date);
 				$('.alert').addClass('alert-success').html(retorno.alerta).fadeIn();
 				setTimeout(clear, 3000);
 			}else if(retorno.acao=='editar'){
 				$('#c_'+retorno.id).html(retorno.cadastro);
+				$('input[name=date]').val(retorno.date);
 				$('.alert').addClass('alert-success').html(retorno.alerta).fadeIn();
 				setTimeout(clear, 3000);
 			}else if(retorno.acao=='alerta'){
@@ -196,6 +198,7 @@ $('.table').on('click', 'img.deletar', function(e){
 					data: { id: cadastro },
 					success: function(retorno){
 						$('#c_'+retorno.id).remove();
+						$('input[name=date]').val(retorno.date);
 						return false;
 					},
 					error: function(error){
