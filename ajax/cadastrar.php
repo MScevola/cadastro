@@ -41,6 +41,7 @@ if($endereco == null){
 }
 
 $data = date("Y-m-d H:i:s");
+$retorno['date'] = $data;
 
 if($id==null){
 	

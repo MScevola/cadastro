@@ -1,5 +1,6 @@
 <?
 include('sql.php');
+extract($_POST);
 
 $busca_atualizacao = mysql_query("SELECT date FROM cadastros WHERE date>'$date' ORDER BY date DESC LIMIT 1");
 $encontrou = mysql_num_rows($busca_atualizacao);
@@ -10,7 +11,8 @@ if($encontrou!=0){
 	
 	$busca_cadastros = mysql_query("SELECT id, nome, sobrenome, endereco FROM cadastros WHERE status!='2'");
 	
-	$cadastros = '<tr class="header">
+	$cadastros = '<tbody>
+				<tr class="header">
                     <th>Nome</th>
                     <th>Sobrenome</th>
                     <th class="endereco">Endereço</th>
@@ -24,6 +26,7 @@ if($encontrou!=0){
 			<td><img src="images/editar.png" width="30" class="editar" data-id="'.$id.'" /> <img src="images/deletar.png" width="30" class="deletar" data-id="'.$id.'" data-toggle="modal" data-target="#confirm-delete" /></td>
 		</tr>';
 	}
+	$cadastros .= '</tbody>';
 	
 	$retorno['atualiza'] = 'ok';
 	$retorno['date'] = $date;
